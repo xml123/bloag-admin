@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import LiveRoute from 'react-live-route'
+//import LiveRoute from 'react-live-route'
 import HomePage from '../../src/pages/home'
 
 const AppRoutes = () => (
