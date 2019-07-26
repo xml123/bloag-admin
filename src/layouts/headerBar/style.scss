@@ -8,3 +8,33 @@
     overflow: hidden;
     color: #333;
 }
+.header{
+    height:3.6rem;
+    box-sizing: border-box;
+    padding:0.7rem 1.5rem;
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    border-bottom:1px solid #eaecef;
+    background:#fff;
+    z-index: 99;
+}
+.headerLeft{
+    position:absolute;
+    left:1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+.headerRight{
+    position: absolute;
+    right:1.5rem;
+    height:2.2rem;
+    line-height:2.2rem;
+}
+.headerRight a{
+    margin-left:1.8rem;
+    color:#2c3e50;
+    font-size:0.9rem;
+}

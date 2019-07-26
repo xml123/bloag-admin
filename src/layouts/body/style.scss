@@ -1,0 +1,41 @@
+.bodyBox{
+    margin-top:3.6rem;
+}
+.bodyLeft{
+    width:20rem;
+    position:fixed;
+    top: 3.6rem;
+    left: 0;
+    bottom: 0;
+    font-size: 16px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-right: 1px solid #eaecef;
+    overflow-y: auto;
+}
+.leftOneList{
+    padding:1.5rem 0;
+}
+.leftTitle{
+    padding:.35rem 1.5rem .35rem 1.25rem;
+    margin:0;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+.leftOneList ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.leftOneList a{
+    font-size: 1em;
+    font-weight: 400;
+    color: #2c3e50;
+    border-left: .25rem solid transparent;
+    line-height: 1.4;
+    width: 100%;
+    box-sizing: border-box;
+}
+.leftTwoList li{
+    padding: .4rem 1rem .4rem 1.25rem;
+}
