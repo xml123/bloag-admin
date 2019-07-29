@@ -50,7 +50,7 @@ class App extends React.Component<any> {
                 </a>
             </Dropdown>
             <a href="/friend">友情链接</a>
-            <a href="/home">留言</a>
+            <a href="/message">留言</a>
             <a href="https://github.com/xml123/bloag" target="_blank"><Icon type="github" style={{ fontSize: '24px'}}  /></a>
           </div>
         </div>
