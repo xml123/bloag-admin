@@ -1,19 +1,21 @@
 import * as React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 //import LiveRoute from 'react-live-route'
 import HomePage from '../../src/pages/home'
 import Friend from '../../src/pages/friend'
 import Message from '../../src/pages/message'
+import ArticalDetail from '../../src/pages/articalDetail'
 
 const AppRoutes = () => (
-    <BrowserRouter>
-        <Switch>
-            <Route path={`/`} exact={true} component={HomePage} />
-            <Route path={`/home`} exact={true} component={HomePage} />
-            <Route path={`/friend`} exact={true} component={Friend} />
-            <Route path={`/message`} exact={true} component={Message} />
-        </Switch>
-    </BrowserRouter>
+    <Router forceRefresh={false}>
+        <div>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/home" component={HomePage} />
+            <Route path="/friend" component={Friend} />
+            <Route path="/message" component={Message} />
+            <Route path="/artical" component={ArticalDetail} />
+        </div>
+    </Router>
 )
 
 class Slider extends React.Component {

@@ -4,9 +4,49 @@ import HomeHeader from '../../layouts/headerBar'
 import Footer from '../../layouts/footer'
 import {Icon} from 'antd'
 import ruanyifeng from '../../assets/images/ruanyifeng.png'
+import axios from 'axios'
+import config from '../../../config/index'
+type IListItem = {
+    name: string
+    avator: string
+    link:string
+    abstract:string
+    id:number
+}
 
-class App extends React.Component<any>{
+type IState = {
+    code:String,
+    list:IListItem[],
+}
+
+type IProps = {
+
+}
+
+class App extends React.Component<IProps, IState>{
+    constructor(props: IProps) {
+        super(props);
+    }
+
+    state = {} as IState
+
+    componentDidMount(){
+        const that = this
+        axios.get(config.API_BASE_URL+'/api/get_friends')
+        .then(function (response) {
+            const data = response.data
+            that.setState({
+                code:data.code,
+                list:data.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     render(){
+        const {code,list} = this.state
         return(
             <div className="friend">
                 <HomeHeader />
@@ -24,38 +64,19 @@ class App extends React.Component<any>{
                     </div>
                     <div className="friendPanel">
                         <ul>
-                            <li>
-                                <a href="http://www.ruanyifeng.com/blog/" target="_black">
-                                    <span className="friendAvator">
-                                        <img src={ruanyifeng}></img>
-                                    </span>
-                                    <span className="friendName">阮一峰</span>
-                                </a>
-                                <div className="friendAbstract">知名的技术博客主</div>
-                            </li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            {code == '200' && list.map(item => {
+                                return (
+                                    <li key={item.id}>
+                                        <a href={item.link} target="_black">
+                                            <span className="friendAvator">
+                                                <img src={ruanyifeng}></img>
+                                            </span>
+                                            <span className="friendName">{item.name}</span>
+                                        </a>
+                                        <div className="friendAbstract">{item.abstract}</div>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                 </div>

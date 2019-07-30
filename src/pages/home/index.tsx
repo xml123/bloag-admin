@@ -4,10 +4,18 @@ import HomeHeader from '../../layouts/headerBar'
 import Footer from '../../layouts/footer'
 import { Icon, Pagination } from 'antd'
 import './style.scss'
-import Body from '../../layouts/body'
+import axios from 'axios'
+import config from '../../../config/index'
 
 interface IProps {
     style: React.CSSProperties
+}
+
+type IState = {
+    code:string
+    jsList:[]
+    afterList:[]
+    otherList:[]
 }
 
 function itemRender(current:number, type:string, originalElement:any) {
@@ -20,11 +28,66 @@ function itemRender(current:number, type:string, originalElement:any) {
     return originalElement;
 }
 
-class App extends React.Component<IProps> {
+class App extends React.Component<IProps,IState> {
+    constructor(props: IProps) {
+        super(props);
+    }
+
+    state = {} as IState
+
+    componentDidMount(){
+        const that = this
+        axios.post(config.API_BASE_URL+'/api/get_head_list',
+            {type:'前端技术'},
+            {headers: {'Content-Type': 'application/json'}}
+        )
+        .then(function(res){
+            const data = res.data
+            that.setState({
+                code:data.code,
+                jsList:data.data
+            })
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+
+        axios.post(config.API_BASE_URL+'/api/get_head_list',
+            {type:'后端技术'},
+            {headers: {'Content-Type': 'application/json'}}
+        )
+        .then(function(res){
+            const data = res.data
+            that.setState({
+                code:data.code,
+                afterList:data.data
+            })
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+
+        axios.post(config.API_BASE_URL+'/api/get_head_list',
+            {type:'杂谈'},
+            {headers: {'Content-Type': 'application/json'}}
+        )
+        .then(function(res){
+            const data = res.data
+            that.setState({
+                code:data.code,
+                otherList:data.data
+            })
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+    }
+
     render() {
+        const {jsList,afterList,otherList} = this.state
       return (
         <div className={style.wrapper}>
-            <HomeHeader />
+            <HomeHeader jsList={jsList} afterList={afterList} otherList={otherList} />
             <div className="homeBody">
                 <ul className="keyArtical">
                     <li className="keyLi">
