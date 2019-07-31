@@ -1,66 +1,48 @@
-export const PLAY_PLAYLIST = 'PLAY_PLAYLIST'
+export const CHANGE_STATUS = 'CHANGE_STATUS'
+export const GET_HEADER_LIST = 'GET_HEADER_LIST'
 
 export type IAction = {
     readonly type: string
     [propName: string]: any
 }
-export type IActionCreator = (param: any) => IAction
-enum CycleMode {
-    single = 0,
-    all,
-    random
-}
-export type IPlayState = {
-    isPlaying: boolean
-    cycleMode: CycleMode
-    playingTime: number
-}
-
-export type IPlayingSong = {
-    id: string
-    name: string
-    coverImg: string
-    url: string
-    artists: string
-    album: string
-}
-export type IPlaylist = {
-    currIndex: number
-    list: IPlayingSong[]
+export type IHeader = {
+    jsList:[]
+    afterList:[]
+    otherList:[]
 }
 export type IStoreState = {
-    playingSong: IPlayingSong,
-    playState: IPlayState,
-    playlist: IPlaylist
+    headStatus: boolean
+    jsList:[]
+    afterList:[]
+    otherList:[]
 }
 
 export const defaultState: IStoreState = {
-    playingSong: {
-      id: '',
-      name: '💿',
-      coverImg: '*.jpg',
-      url: '',
-      artists: '',
-      album: ''
-    },
-    playState: {
-      isPlaying: false,
-      cycleMode: CycleMode.all,
-      playingTime: 0
-    },
-    playlist: {
-      currIndex: 0,
-      list: []
-    }
+    headStatus:false,
+    jsList:[],
+    afterList:[],
+    otherList:[],
 }
 
+export type IActionCreator = (param: any) => IAction
 type IReducer = (state: IStoreState, action: IAction) => IStoreState
 
+const switchStatus:IReducer = (state, action) => {
+    const IheadStatus = state.headStatus
+    const IHeaderList = action.headerList
+    const allList:IStoreState = {
+        headStatus:!IheadStatus,
+        jsList:IHeaderList.jsList,
+        afterList:IHeaderList.afterList,
+        otherList:IHeaderList.otherList
+    }
+    return allList
+}
+
 export const reducers: IReducer = (state, action) => {
-    // console.log(action)
     switch (action.type) {
-        case PLAY_PLAYLIST:
-            return state
+        case CHANGE_STATUS:
+            return switchStatus(state,action)
         default:
             return state
     }

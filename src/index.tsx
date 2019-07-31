@@ -16,6 +16,8 @@ if (process.env.NODE_ENV === `development`) {
 
 const store = createStore(reducers as any, defaultState as object, applyMiddleware(...middlewares))
 
+export default store
+
 ReactDOM.render(
     <Provider store={store}>
         <App />
