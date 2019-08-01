@@ -50,9 +50,9 @@ function axios3():any{
 function listTest(list:IListItem[]):any{
   return list.map((item:IListItem)=>{
     return (<Menu.Item key={item.id}>
-      <a rel="noopener noreferrer" href="/artical">
+      <Link rel="noopener noreferrer" to="/artical">
         {item.title}
-      </a>
+      </Link>
     </Menu.Item>)
   })
 }
@@ -108,9 +108,9 @@ class HeadBar extends React.Component<IProps, IState> {
           <div className="headerRight">
             <Link to="/home">首页</Link>
             <Dropdown overlay={<Menu>{listTest(jsList)}</Menu>}>
-                <a className="ant-dropdown-link" href="#">
+                <Link className="ant-dropdown-link" to="#">
                 前端技术 <Icon type="down" />
-                </a>
+                </Link>
             </Dropdown>
             <Dropdown overlay={<Menu>{listTest(afterList)}</Menu>}>
                 <a className="ant-dropdown-link" href="#">
