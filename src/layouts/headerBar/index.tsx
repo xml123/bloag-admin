@@ -27,26 +27,6 @@ type IProps = {
   otherList:[],
 }
 
-const menu = (
-    <Menu>
-      <Menu.Item>
-        <a rel="noopener noreferrer" href="/artical">
-          1st menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a rel="noopener noreferrer" href="/artical">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a rel="noopener noreferrer" href="/artical">
-          3rd menu item
-        </a>
-      </Menu.Item>
-    </Menu>
-);
-
 function axios1():any{
   return axios.post(config.API_BASE_URL+'/api/get_head_list',
         {type:'前端技术'},
@@ -67,8 +47,15 @@ function axios3():any{
         {headers: {'Content-Type': 'application/json'}}
       )
 }
-
-
+function listTest(list:IListItem[]):any{
+  return list.map((item:IListItem)=>{
+    return (<Menu.Item key={item.id}>
+      <a rel="noopener noreferrer" href="/artical">
+        {item.title}
+      </a>
+    </Menu.Item>)
+  })
+}
 class HeadBar extends React.Component<IProps, IState> {
     constructor(props: IProps) {
       super(props);
@@ -78,11 +65,6 @@ class HeadBar extends React.Component<IProps, IState> {
     }
 
     state = {} as IState
-
-    static getDerivedStateFromProps(nextProps:IStoreState, prevState:any):any {
-      //console.log('nextProps',nextProps,store.getState())
-      return null
-    }
 
     componentDidMount(){
       const that = this
@@ -118,7 +100,6 @@ class HeadBar extends React.Component<IProps, IState> {
     //     return true
     //   }
     // }
-
     render() {
       const {jsList,afterList,otherList} = this.props
       return (
@@ -126,17 +107,17 @@ class HeadBar extends React.Component<IProps, IState> {
           <div className="headerLeft">bright</div>
           <div className="headerRight">
             <Link to="/home">首页</Link>
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={<Menu>{listTest(jsList)}</Menu>}>
                 <a className="ant-dropdown-link" href="#">
                 前端技术 <Icon type="down" />
                 </a>
             </Dropdown>
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={<Menu>{listTest(afterList)}</Menu>}>
                 <a className="ant-dropdown-link" href="#">
                 后端技术 <Icon type="down" />
                 </a>
             </Dropdown>
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={<Menu>{listTest(otherList)}</Menu>}>
                 <a className="ant-dropdown-link" href="#">
                 杂谈 <Icon type="down" />
                 </a>
