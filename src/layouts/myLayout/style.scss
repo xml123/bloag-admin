@@ -1,0 +1,52 @@
+#components-layout-demo-custom-trigger .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .ant-layout.ant-layout-has-sider{
+      height:100%;
+  }
+  
+  #components-layout-demo-custom-trigger .trigger:hover {
+    color: #606166;
+  }
+
+  .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected{
+      background: #606166;
+  }
+  
+  #components-layout-demo-custom-trigger .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
+  .ant-layout .logo {
+    height: 32px;
+    background: #ffffff;
+    border-radius: 6px;
+    margin: 16px;
+}
+.ant-layout-header{
+    padding-right:40px;
+    padding-left:0;
+}
+.ant-layout-header i {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: color .3s;
+}
+.ant-page-header{
+    background: transparent;
+}
+.contentBox{
+    margin: 0 16px 24px 16px;
+    padding: 24px;
+    background: #fff;
+    min-height: 280px;
+}
