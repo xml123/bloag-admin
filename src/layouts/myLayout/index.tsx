@@ -2,6 +2,7 @@ import * as React from 'react'
 import "antd/dist/antd.css"
 import { Layout, Menu, Icon, PageHeader} from 'antd'
 import './style.scss'
+import {NavLink,withRouter} from 'react-router-dom'
 
 const { Header, Sider, Content } = Layout
 const {SubMenu} = Menu
@@ -44,6 +45,10 @@ class App extends React.Component<any,IState> {
         });
     }
 
+    // toArticalList(){
+    //   this.props.history.push('/articalList')
+    // }
+
     render() {
       return (
         <Layout>
@@ -51,8 +56,10 @@ class App extends React.Component<any,IState> {
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
-              <Icon type="home" />
-              <span>首页</span>
+              <NavLink to='/'>
+                <Icon type="home" />
+                <span>首页</span>
+              </NavLink>
             </Menu.Item>
             <SubMenu
             key="sub1"
@@ -63,10 +70,10 @@ class App extends React.Component<any,IState> {
               </span>
             }
           >
-            <Menu.Item key="6">前端文章</Menu.Item>
-            <Menu.Item key="7">后端文章</Menu.Item>
-            <Menu.Item key="8">杂谈</Menu.Item>
-            <Menu.Item key="9">草稿箱</Menu.Item>
+            <Menu.Item key="6"><NavLink to='/articalList/前端技术'>前端文章</NavLink></Menu.Item>
+            <Menu.Item key="7"><NavLink to='/articalList/后端技术'>后端文章</NavLink></Menu.Item>
+            <Menu.Item key="8"><NavLink to='/articalList/杂谈'>杂谈</NavLink></Menu.Item>
+            <Menu.Item key="9"><NavLink to='/articalList/草稿箱'>草稿箱</NavLink></Menu.Item>
           </SubMenu>
             <Menu.Item key="3">
               <Icon type="safety" />
@@ -100,4 +107,4 @@ class App extends React.Component<any,IState> {
     }
   }
   
-  export default App
+  export default withRouter(App as any)
